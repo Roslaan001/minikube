@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRIO_BIN_VERSION = v1.35.0
+CRIO_BIN_VERSION = v1.36.4
 # Official CRI-O Static Binaries from GitHub Releases in GCS
 # See "Downloads" section in release notes: https://github.com/cri-o/cri-o/releases/tag/v1.35.0
 CRIO_BIN_SITE = https://storage.googleapis.com/cri-o/artifacts
