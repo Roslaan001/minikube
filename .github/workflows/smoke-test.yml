@@ -27,7 +27,8 @@ env:
   LOG_ARGS: --v=8 --alsologtostderr
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 # Limit one unit test job running per PR/Branch
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

@@ -8,11 +8,12 @@ env:
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   bump-cilium-version:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         timeout-minutes: 1
@@ -36,12 +37,12 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1
         timeout-minutes: 1
         with:
-          token: ${{ secrets.MINIKUBE_BOT_PAT }}
+          token: ${{ secrets.MINIKUBE_BOT_PAT || secrets.GITHUB_TOKEN }}
           commit-message: 'CNI: Update cilium from ${{ steps.bumpCilium.outputs.OLD_VERSION }} to ${{ steps.bumpCilium.outputs.NEW_VERSION }}'
           committer: minikube-bot <20374350+minikube-bot@users.noreply.github.com>
           author: minikube-bot <20374350+minikube-bot@users.noreply.github.com>
           branch: auto_bump_cilium_version
-          push-to-fork: minikube-bot/minikube
+          # push-to-fork: minikube-bot/minikube
           base: master
           delete-branch: true
           title: 'CNI: Update cilium from ${{ steps.bumpCilium.outputs.OLD_VERSION }} to ${{ steps.bumpCilium.outputs.NEW_VERSION }}'

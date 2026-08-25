@@ -29,7 +29,8 @@ env:
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 jobs:
   # build-test-binaries job runs before all other jobs and produces binaries/test-data per arch to be shared by all following jobs
   build-test-binaries:

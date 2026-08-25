@@ -4,10 +4,11 @@ on:
   release:
     types: [published]
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 jobs:
   twitter-release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: ethomson/send-tweet-action@288f9339e0412e3038dce350e0da5ecdf12133a6
         timeout-minutes: 1

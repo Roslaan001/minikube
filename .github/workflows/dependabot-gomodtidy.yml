@@ -13,14 +13,14 @@ permissions:
 jobs:
   dependabot-gomodtidy:
     if: github.actor == 'dependabot[bot]' && github.event.pull_request.head.repo.full_name == 'kubernetes/minikube'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.MINIKUBE_BOT_PAT }}
+          token: ${{ secrets.MINIKUBE_BOT_PAT || secrets.GITHUB_TOKEN }}
 
       - name: Setup Go
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
