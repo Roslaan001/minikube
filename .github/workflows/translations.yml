@@ -5,6 +5,7 @@ on:
     paths:
       - "translations/**"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
@@ -32,6 +33,7 @@ jobs:
       - name: Unit Test
         timeout-minutes: 9
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TESTSUITE: unittest
         run: make test
         continue-on-error: false

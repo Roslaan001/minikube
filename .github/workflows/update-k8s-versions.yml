@@ -5,6 +5,7 @@ on:
     # every Monday at around 1 am pacific/8 am UTC
     - cron: "0 8 * * 1"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:

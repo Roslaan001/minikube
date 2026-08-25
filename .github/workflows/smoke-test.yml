@@ -23,6 +23,7 @@ on:
       - "!**.json"
   workflow_dispatch:
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   LOG_ARGS: --v=8 --alsologtostderr
 

@@ -12,6 +12,7 @@ on:
       - "!deploy/iso/**"
       - "!site/**"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
@@ -70,6 +71,7 @@ jobs:
       - name: Lint
         timeout-minutes: 13
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TESTSUITE: lintall
         run: make test
         continue-on-error: false
@@ -93,6 +95,7 @@ jobs:
       - name: Unit Test
         timeout-minutes: 9
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TESTSUITE: unittest
         run: make test
         continue-on-error: false

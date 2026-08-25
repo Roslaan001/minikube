@@ -22,6 +22,7 @@ jobs:
       )
     runs-on: ubuntu-latest
     env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       MINIKUBE_AZ_RESOURCE_GROUP: "SIG-CLUSTER-LIFECYCLE-MINIKUBE"
       AZURE_DEFAULTS_LOCATION: "southcentralus"
       MINIKUBE_AZ_SIG_NAME: "minikube"
@@ -70,6 +71,7 @@ jobs:
 
       - name: Wait for SSH
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SSHPASS: ${{ secrets.MINIKUBE_AZ_CI_WINDOWS_VM_PASSWORD }}
         run: |
           VM_NAME="${{ env.VM_NAME }}"
@@ -88,6 +90,7 @@ jobs:
 
       - name: Install kubectl
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SSHPASS: ${{ secrets.MINIKUBE_AZ_CI_WINDOWS_VM_PASSWORD }}
         run: |
           VM_NAME="${{ env.VM_NAME }}"
@@ -96,6 +99,7 @@ jobs:
           sshpass -e ssh -o StrictHostKeyChecking=no -o PubkeyAuthentication=no "$USER@$HOST" "powershell -Command \"if (-not (Get-Command kubectl.exe -ErrorAction SilentlyContinue)) { choco install kubernetes-cli --yes --no-prompt --ignore-package-exit-codes --ignore-detected-reboot }\""          
       - name: Copy Binaries to VM
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SSHPASS: ${{ secrets.MINIKUBE_AZ_CI_WINDOWS_VM_PASSWORD }}
         run: |
           VM_NAME="${{ env.VM_NAME }}"
@@ -110,6 +114,7 @@ jobs:
       - name: Run Functional Test
         continue-on-error: true
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SSHPASS: ${{ secrets.MINIKUBE_AZ_CI_WINDOWS_VM_PASSWORD }}
         run: |
           VM_NAME="${{ env.VM_NAME }}"
@@ -136,6 +141,7 @@ jobs:
       - name: Copy results from inside the VM
         if: always() && steps.azlogin.outcome == 'success'
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SSHPASS: ${{ secrets.MINIKUBE_AZ_CI_WINDOWS_VM_PASSWORD }}
         run: |
           VM_NAME="${{ env.VM_NAME }}"

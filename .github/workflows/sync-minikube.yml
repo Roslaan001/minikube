@@ -5,6 +5,7 @@ on:
     # every day at 7am & 7pm pacific
     - cron: "0 2,14 * * *"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
@@ -36,6 +37,7 @@ jobs:
       - name: Synchronize images to Alibaba Cloud Container Registry Service
         timeout-minutes: 137
         env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ACR_USER: ${{ secrets.ALIBABA_CLOUD_ACR_USER }}
           ACR_PASSWORD: ${{ secrets.ALIBABA_CLOUD_ACR_PASSWORD }}
           DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}

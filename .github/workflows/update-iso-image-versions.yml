@@ -10,6 +10,7 @@ on:
         # default: "update-buildkit-version,update-cni-plugins-version,update-containerd-version,update-cri-o-version,update-crictl-version,update-crun-version,update-docker-version,update-docker-buildx-version,update-golang-version,update-nerdctl-version,update-nerdctld-version,update-runc-version,update-debian-version"
         default: "update-buildkit-version,update-cni-plugins-version,update-crun-version,update-docker-version,update-golang-version,update-runc-version,update-debian-version"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:

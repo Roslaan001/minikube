@@ -15,6 +15,7 @@ concurrency:
   # For example, if you push multiple commits to a pull request in quick succession, only the latest workflow run will continue
   cancel-in-progress: true
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
@@ -44,6 +45,7 @@ jobs:
         - name: Lint
           timeout-minutes: 13
           env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             TESTSUITE: lint
           run: make test
           continue-on-error: false
@@ -60,6 +62,7 @@ jobs:
         - name: Boilerplate check
           timeout-minutes: 1
           env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             TESTSUITE: boilerplate
           run: make test
           continue-on-error: false

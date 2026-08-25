@@ -5,6 +5,7 @@ on:
     # every day at 7am & 7pm pacific
     - cron: "0 2,14 * * *"
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
@@ -16,6 +17,7 @@ jobs:
     if: github.repository == 'kubernetes/minikube'
     runs-on: ubuntu-latest
     env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: 'us-west-1'

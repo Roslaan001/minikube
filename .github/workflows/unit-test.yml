@@ -36,6 +36,7 @@ concurrency:
   # For example, if you push multiple commits to a pull request in quick succession, only the latest workflow run will continue
   cancel-in-progress: true
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOPROXY: https://proxy.golang.org
   GO_VERSION: '1.26.5'
 permissions:
@@ -74,6 +75,7 @@ jobs:
         - name: unit test
           timeout-minutes: 12
           env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             TESTSUITE: unittest
           run: make test
           continue-on-error: false
